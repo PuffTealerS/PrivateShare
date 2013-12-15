@@ -77,7 +77,6 @@ audio:not([controls]) {
 [hidden] {
   display: none;
 }
-
 li#pseudo {
   font-size: 13px;
 }
