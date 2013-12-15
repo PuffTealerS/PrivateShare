@@ -12,6 +12,7 @@ Pour l'instant, les nouveautés sont :
 - Ajout : Récupération pour les 1080p (qui ne sont pas dans des dossiers) de l'image de l'affiche (via allociné)
 - Affichage des 5 affiches des films 1080p les plus récents sur l'index
 - Mise en place d'un changelog dans la partie admin (Ajout de version/Modification de version)
+- Ajout des avatars, il y en a un par défaut
 
 _________________________________________________________________________________________________________________
 
