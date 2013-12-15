@@ -16,20 +16,21 @@ Pour l'instant, les nouveautés sont :
 
 _________________________________________________________________________________________________________________
 
-A FAIRE AVANT INSTALLATION : 
-Préparation de la bdd, il vous suffit d'importer dans phpmyadmin PrivateShare.sql.
+/!\ A FAIRE AVANT INSTALLATION : /!\
+
+Préparation de la bdd : Créer une bdd 'privateshare' puis importer PrivateShare.sql
 
 
 Concernant l'installation, il faut le placer le dossier PrivateShare dans votre /var/www/ et d'éditer le fichier config.php
 
 Un compte admin est déjà disponible:
 
- login : admin
- pwd   : admin
+ *login : admin
+ *pwd   : admin
 
 
  Il est nécessaire de lancer run.php (logo refresh dans le menu) pour pouvoir update la bdd. 
- Si vous n'obtenez un index vide vérifiez votre config.php
+ Si vous obtenez un index vide vérifiez votre config.php
 __________________________________________________________________________________________________________________
 
 
