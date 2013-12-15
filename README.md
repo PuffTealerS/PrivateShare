@@ -1,6 +1,6 @@
-#PrivateShare#
+#PrivateShare
 
-# PuffTealerS - 15/12/13
+@PuffTealerS - 15/12/13
 
 
 
@@ -11,12 +11,12 @@ Pour l'instant, les nouveautés sont :
 - Modification du CSS
 - Ajout : Récupération pour les 1080p (qui ne sont pas dans des dossiers) de l'image de l'affiche (via allociné)
 - Affichage des 5 affiches des films 1080p les plus récents sur l'index
-- Mise en place d'un changelop dans la partie admin (Ajout de version/Modification de version)
+- Mise en place d'un changelog dans la partie admin (Ajout de version/Modification de version)
 
 _________________________________________________________________________________________________________________
 
 A FAIRE AVANT INSTALLATION : 
-Préparation de la bdd, il vous suffit d'importer dans phpMyadmin PrivateShare.sql.
+Préparation de la bdd, il vous suffit d'importer dans phpmyadmin PrivateShare.sql.
 
 
 Concernant l'installation, il faut le placer le dossier PrivateShare dans votre /var/www/ et d'éditer le fichier config.php
