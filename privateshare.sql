@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 15, 2013 at 04:58 PM
+-- Generation Time: Dec 15, 2013 at 09:06 PM
 -- Server version: 5.5.33
 -- PHP Version: 5.5.3
 
@@ -77,15 +77,17 @@ CREATE TABLE `logs` (
   `time` time NOT NULL,
   `ip` varchar(39) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `logs`
 --
 
 INSERT INTO `logs` (`id`, `uid`, `username`, `action`, `date`, `time`, `ip`) VALUES
-(1, 2, 'PuffTealerS', 'Log out', '2013-12-15', '16:45:52', '::1'),
-(2, 1, 'admin', 'Log in', '2013-12-15', '16:49:02', '::1');
+(1, 2, 'PuffTealerS', 'Log out', '2013-12-15', '20:57:59', '::1'),
+(2, 1, 'admin', 'Log in', '2013-12-15', '20:58:41', '::1'),
+(3, 1, 'admin', 'Log out', '2013-12-15', '20:59:57', '::1'),
+(4, 2, 'admin', 'Log in', '2013-12-15', '21:00:18', '::1');
 
 -- --------------------------------------------------------
 
@@ -128,6 +130,7 @@ CREATE TABLE `users` (
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `avatar` varchar(255) NOT NULL DEFAULT '/img/avatar/defaut.jpg',
   `code_activation` varchar(255) NOT NULL,
   `actived` int(1) NOT NULL,
   PRIMARY KEY (`id`)
@@ -137,8 +140,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `rank`, `username`, `password`, `email`, `code_activation`, `actived`) VALUES
-(1, 1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@PrivateShare.fr', '', 1);
+INSERT INTO `users` (`id`, `rank`, `username`, `password`, `email`, `avatar`, `code_activation`, `actived`) VALUES
+(2, 1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@PrivateShare.fr', '/img/avatar/defaut.jpg', '', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

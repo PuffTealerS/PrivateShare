@@ -1,11 +1,13 @@
 ﻿	<div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="index.php" class="navbar-brand">Private-Share</a>
+          
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
+
 					<?php
+
 						include("includes/config.php");
 						$path = $_SERVER['PHP_SELF']; 
 						$filepath = basename ($path); 
@@ -26,8 +28,8 @@
 								$cat = 5; // 5 = Pas de recherche
 							}
 						}
-						if ($filepath == "profile.php")
-							{ $cat = 6; } // 6 = Profile
+						if ($filepath == "profil.php")
+							{ $cat = 6; } // 6 = Profil
 						if ($filepath == "request.php")
 							{ $cat = 7; } // 7 = Requêtes
 						if ($filepath == "admin.php")
@@ -37,6 +39,21 @@
 						$sqlid->execute();
 						$sqllastid = $sqlid->fetch();
 						$lastid=$sqllastid['lastid'];
+
+						// --- Affichage de l'avatar
+						
+						$membre = $_SESSION['username'];
+						$sqlavatar = $bdd ->prepare('SELECT avatar FROM users WHERE username=:membre');
+						$sqlavatar->bindValue(':membre', $membre, PDO::PARAM_STR);
+						$sqlavatar->execute();
+
+						$avatar = $sqlavatar -> fetch();
+						$chemin = $avatar['avatar'];
+						echo '<li id="pseudo"><img src="'.$chemin.'" height="45" width="50"></br>';
+						echo $_SESSION['username'].'</a></li>';
+						
+						
+
 					?>
                       <li <?php if ($cat == 1) { echo'class="active"'; } ?>><a href="search.php?cat=Films">Films</a></li>
                       <li <?php if ($cat == 2) { echo'class="active"'; } ?>><a href="search.php?cat=Series">Séries</a></li>
@@ -48,7 +65,9 @@
 						<form class="navbar-form navbar-left" action="search.php" method="post">
                     <input type="text" name="search" class="form-control col-lg-8" placeholder="Recherche rapide">
                     </form>
-                      <li <?php if ($cat == 6) { echo'class="active"'; } ?>><a href="profile.php">Profil </a></li>
+                      <li 
+                      <?php 
+                      if ($cat == 6) { echo'class="active"'; } ?>><a href="profil.php">Profil </a></li>
 				  <?php //Administrateur
 				  if($_SESSION['rank']==1) { 
 				  $countreq=0;
@@ -65,6 +84,7 @@
 
 					  		echo '<li><a href="run.php"><img src="img/refresh.png" width="18" height="18" /></a></li>';
 
+
 					  	
 				  
 				  }
@@ -80,7 +100,7 @@
 				  else { if ($cat == 7) { echo'<li class="active">'; } else { echo '<li>'; } echo'<a href="request.php">Requ&ecirc;te <span class="badge"></span></a></li>'; } 
 				  } ?>
 					  <li><a href="logout.php">Logout</a></li>
-			</ul>
+					</ul>
         </div>
       </div>
     </div>
