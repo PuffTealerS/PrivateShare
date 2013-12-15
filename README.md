@@ -14,7 +14,14 @@ Pour l'instant, les nouveautés sont :
 - Mise en place d'un changelog dans la partie admin (Ajout de version/Modification de version)
 - Ajout des avatars, il y en a un par défaut
 
-_________________________________________________________________________________________________________________
+Quelques screens : 
+- <a href="http://www.zupmage.eu/i/6lr4y9Hwiv.png" targer="_blanlk">Login</a>
+- <a href="http://www.zupmage.eu/i/Y4Pn2X1mRk.png" targer="_blanlk">Index</a>
+- <a href="http://www.zupmage.eu/i/VeEVbEOsv3.png" targer="_blanlk">Stream</a>
+- <a href="http://www.zupmage.eu/i/ER6LjKMwKe.png" target="_blank">Changelog</a>
+
+
+___________________________________________________________________________________________________________________
 
 /!\ A FAIRE AVANT INSTALLATION : /!\
 
@@ -25,8 +32,8 @@ Concernant l'installation, il faut le placer le dossier PrivateShare dans votre 
 
 Un compte admin est déjà disponible:
 
- *login : admin
- *pwd   : admin
+- Login        : admin
+- Mot de passe : admin
 
 
  Il est nécessaire de lancer run.php (logo refresh dans le menu) pour pouvoir update la bdd. 
