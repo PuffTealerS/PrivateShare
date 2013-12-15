@@ -1,10 +1,7 @@
-################
-# PrivateShare #
-#              #
-# PuffTealerS  #
-#              #
-# 15/12/13	   #
-################
+#PrivateShare#
+
+# PuffTealerS - 15/12/13
+
 
 
 Suite à une version très intéressante de PrivateShare (merci à Seriesme) mais qui n'a plus été tenu à jour,
@@ -19,10 +16,10 @@ Pour l'instant, les nouveautés sont :
 _________________________________________________________________________________________________________________
 
 A FAIRE AVANT INSTALLATION : 
-Préparation de la base donnée, il vous suffit d'import PrivateShare.sql.
+Préparation de la bdd, il vous suffit d'importer dans phpMyadmin PrivateShare.sql.
 
 
-Concernant l'installation, il suffit de placer le dossier PrivateShare dans votre /var/www/ et d'éditer le fichier config.php
+Concernant l'installation, il faut le placer le dossier PrivateShare dans votre /var/www/ et d'éditer le fichier config.php
 
 Un compte admin est déjà disponible:
 
