@@ -55,6 +55,7 @@
 						
 
 					?>
+						<li><a href="index.php">Accueil</a></li>
                       <li <?php if ($cat == 1) { echo'class="active"'; } ?>><a href="search.php?cat=Films">Films</a></li>
                       <li <?php if ($cat == 2) { echo'class="active"'; } ?>><a href="search.php?cat=Series">Séries</a></li>
 					  <li <?php if ($cat == 3) { echo'class="active"'; } ?>><a href="search.php?cat=Doc">Docs</a></li>
