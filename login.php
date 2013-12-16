@@ -94,7 +94,7 @@ $time=date("H:i:s");
 $log = $bdd->prepare('INSERT INTO logs(uid, username, ip, action, date, time) VALUES(:uid, :username, :ip, :action, :date, :time)');
 $log->execute(array('uid' => $resultat['id'], 'username' => $username, 'ip' => $ip, 'action' => $action, 'date' => $date, 'time' => $time));
 //On redirige
-header ("Refresh: 3;URL=index.php");
+header ("Refresh: 2;URL=index.php");
 $_SESSION['id'] = $resultat['id'];
 $_SESSION['rank'] = $resultat['rank'];
 $_SESSION['username'] = $username;
