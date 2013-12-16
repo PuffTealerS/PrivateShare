@@ -246,7 +246,11 @@ function detectA($namefile)
 	elseif(preg_match("#NEEDPEACE#i", $namefile)){$a = 1;}
     elseif(preg_match("#OAD#i", $namefile)){$a = 1;}
     elseif(preg_match("#Tkanime#i", $namefile)){$a = 1;}
+    elseif(preg_match("#OchaFansub#i", $namefile)){$a = 1;}
+    elseif(preg_match("#fullanime#i", $namefile)){$a = 1;}
+    elseif(preg_match("#NiRVANAJ#i", $namefile)){$a = 1;}
 	return $a;
+
 }
 // Detection Mac
 function detectMac($namefile)
@@ -296,8 +300,8 @@ function clean_name($namefile)
 	$namefile = str_replace('.mp4', '', $namefile);
 	$namefile = str_replace('.mkv', '', $namefile);
 	$namefile = str_replace('.', ' ', $namefile);
-	$namefile = str_replace('-', ' ', $namefile);
-	$namefile = str_replace('_', ' ', $namefile);
+	//$namefile = str_replace('-', ' ', $namefile);
+	//$namefile = str_replace('_', ' ', $namefile);
 	//$namefile =	strtolower($namefile);
 	$namefile = ucfirst($namefile); 
 	return $namefile;
@@ -451,64 +455,45 @@ function defineSection($section)
  * Nettoyer le nom du film afin de ne recuperer que le titre
  */
 
-function nomfilm ($contenu) 
-{
-
-    if (strlen($contenu) > 40) {
-
-
-        $text = wordwrap($contenu, 45, "***", true); // insertion de marqueurs ***  
-        $tcut = explode("***", $text); // on créé un tableau à partir des marqueurs ***  
-        $string = $tcut[0]; // la partie à mettre en exergue  
-        //echo $string;
-    } 
-
-    else {
-
-        $text = wordwrap($contenu, 30, "***", true); // insertion de marqueurs ***  
-        $tcut = explode("***", $text); // on créé un tableau à partir des marqueurs ***  
-        $string = $tcut[0]; // la partie à mettre en exergue 
-        //echo $string;
+function nomfilm ($string) {
     
-    }
+// ---- $string = "Hunger Games 2012 MULTi TRUEFRENCH 1080p BluRay DTS-HDMA AC3 x264-FrIeNdS";
 
- 
-    $string=str_replace("'"," ",$string);
+    $string = strtolower($string);    
     $string = str_replace('.', ' ', $string);
+    //$string = str_replace('-', ' ', $string);
+$string = preg_replace('/truefrench/', '', $string);
+    $string = str_replace('(', '', $string);
+    $string = str_replace(')', '', $string);
+    $string = str_replace("'",' ',$string);
+    $string = preg_replace('/dts-hdma/','', $string);
+    $string = strstr($string, '-', TRUE);
+    $string = preg_replace('/limited/', '', $string);
     $string = preg_replace('/x264/', '', $string);
-    $string = preg_replace('/X264/', '', $string);
-    $string = preg_replace('/BRRIP/', '', $string);
-    $string = preg_replace('/BRRip/', '', $string);
-    $string = preg_replace('/DVDRIP/', '', $string);
-    $string = preg_replace('/FRENCH/', '', $string);
-    $string = preg_replace('/DVDRiP/', '', $string);
-    $string = preg_replace('/DTS HD MA/', '', $string);
-    $string = preg_replace('/SUBFROCED/', '', $string);
-    $string = preg_replace('/XviD/', '', $string);
-    $string = preg_replace('/HD/', '', $string);
-    $string = preg_replace('/HD MA/', '', $string);
+    $string = preg_replace('/brrip/', '', $string);
+    $string = preg_replace('/french/', '', $string);
+    $string = preg_replace('/dvdrip/', '', $string);
+    $string = preg_replace('/hd ma/', '', $string);
+    $string = preg_replace('/hd/', '', $string);
+    $string = preg_replace('/subforced/', '', $string);
+    $string = preg_replace('/xvid/', '', $string);
+    $string = preg_replace('/dts hdma ac3/', '', $string);
+    $string = preg_replace('/dts hdma/', '', $string);
+    $string = preg_replace('/dts/', '', $string);
     $string = preg_replace('/1080p/', '', $string);
-    $string = preg_replace('/1080P/', '', $string);
-    $string = preg_replace('/BluRay/', '', $string);
-    $string = preg_replace('/BLURAY/', '', $string);
-    $string = preg_replace('/Multi/', '', $string);
-    $string = preg_replace('/MULTi/', '', $string);
-    $string = preg_replace('/DTS/', '', $string);
-    $string = preg_replace('/TrueFrench/', '', $string);
-    $string = preg_replace('/TRUEFRENCH/', '', $string);
-    $string = preg_replace('/MULTiGRPS/', '', $string);
-    $string = preg_replace('/EXTENDED CUT/', '', $string);
-    $string = preg_replace('/MULTI/','', $string);
-    $string = preg_replace('/VOSTFR/','', $string);
+    $string = preg_replace('/bluray/', '', $string);
+    $string = preg_replace('/multi/', '', $string);
+    
+    $string = preg_replace('/multigrps/', '', $string);
+    $string = preg_replace('/extended cut/', '', $string);
+    $string = preg_replace('/extended/', '', $string);
     $string = preg_replace('/vostfr/','', $string);
-    $string = preg_replace('/VERSION CINEMA/','', $string);
-    $string = preg_replace('/AC3/', '', $string);
+    $string = preg_replace('/version cinema/','', $string);
     $string = preg_replace('/ac3/', '', $string);
-    
-
-    
-    $string = rtrim($string);
-    $string = substr($string,0,-4);
+    $string = preg_replace('/proper/', '', $string);    
+    $string = preg_replace('/([0-9]{4})/', '', $string);
+    //$string = rtrim($string);
+    //$string = substr($string,0,-4);
     
     return $string;
 }

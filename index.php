@@ -23,10 +23,10 @@ $npage=ceil($lastid/50);
 $countid=0;
 
 // --- Requete possible pour prendre les dossiers : 
-// SELECT fichier, name, folder, size, cat, datetime, baseurl FROM `list` WHERE `cat`=200 AND `name` NOT LIKE '%Studio%'  ORDER BY datetime DESC LIMIT 0, 5
+// SELECT fichier, name, folder, size, cat, datetime, baseurl FROM `list` WHERE `cat`=200 AND `name` NOT LIKE '%Studio%' AND `name` NOT LIKE '%2%-%2%' ORDER BY datetime DESC LIMIT 0, 5
 
 // --- Recuperation des 5 premiers 1080p dans la bdd
-$testsql=$bdd->prepare('SELECT fichier, name, folder, size, cat, datetime, baseurl FROM `list` WHERE `size`<>"dossier" AND `cat`=200 ORDER BY datetime DESC LIMIT 0, 5');
+$testsql=$bdd->prepare('SELECT fichier, name, folder, size, sizefolder, cat, datetime, baseurl FROM `list` WHERE (`cat`=200 OR `cat`=024) AND `sizefolder`<50 ORDER BY datetime DESC LIMIT 0, 5');
 $testsql->execute();
 
 
@@ -55,7 +55,13 @@ $n=0;
 while($test = $testsql->fetch()) {
 	
 	//echo '<div width=500 heigh=300 id=imageminiatures>';
-	echo'<a href="download.php?file='.$test['fichier'].'&b='.$test['baseurl'].'"><img src=img/thumbnails/'.$n.'.jpg height="225" width="175"></a>';
+	if ($test['size']=='Dossier') {
+		echo'<a href="index.php?baseurl='.$test['baseurl'].'&path='.$test['fichier'].'"><img src=img/thumbnails/'.$n.'.jpg height="225" width="175"></a>';
+		//echo $test['fichier'].'/'.$test['name'];
+	} else {
+		echo'<a href="download.php?file='.$test['fichier'].'&b='.$test['baseurl'].'"><img src=img/thumbnails/'.$n.'.jpg height="225" width="175"></a>';
+	
+	}
 	//echo '</div>';
 	$n++;
 }
@@ -65,11 +71,9 @@ echo '</br>';
 ?>
 			<div class="panel panel-primary">
 				<center><font size="5" color="red">Le Streaming est de nouveau fonctionnel !</font></center>
-				<center><font size="3" color="white">Il est conseillé d'utiliser la dernière version de Divx Player Web disponible : <a href="http://www.divx.com/fr/software/web-player>">ici</a></font></center>
-              	<center><font size="1" color="white">Il est également possible de faire clic droit sur le lecteur streaming puis "copier le lien"</font></center>
-              	<center><font size="1" color="white">Ouvrer VLC sur votre ordinateur puis "Fichier" -> "Ouvrir un flux Réseau" copier le lien.</font></center>
-              	<center><font size="1" color="white">En cas de saccadements durant le stream ceci est du à votre débit internet. </font></center>
-              <div class="panel-heading">
+              	<center><font size="3" color="white">Vous pouvez ajouter un avatar depuis "Profil". Un avatar est mis par défaut, libre à vous de le changer.</font></center>
+              	<center><font size="2" color="white">Il est conseillé d'utiliser la dernière version de Divx Player Web disponible : <a href="http://www.divx.com/fr/software/web-player>">ici</a></font></center>
+              	<div class="panel-heading">
 
 		<?php
 		
@@ -118,7 +122,7 @@ echo '</br>';
 			echo'<tr>
 				<td class="categorie '.$cat2.'"></td>
 				<td>';
-				// Desactivation du Streaming car non fonctionnel.
+				
 				if(preg_match("/\.mp4/", $stid['fichier'])) { echo'<a href="stream.php?codec=mp4&file='.$stid['fichier'].'&b='.$stid['baseurl'].'"><img src="./img/play.png" width="16" height="16" title="Visionner '.$stid['name'].'"/></a> '; }
 				elseif(preg_match("/\.mkv/", $stid['fichier'])) { echo'<a href="stream.php?codec=mkv&file='.$stid['fichier'].'&b='.$stid['baseurl'].'"><img src="./img/play.png" width="16" height="16" title="Visionner '.$stid['name'].'"/></a> '; }
 				elseif(preg_match("/\.avi/", $stid['fichier'])) { echo'<a href="stream.php?codec=avi&file='.$stid['fichier'].'&b='.$stid['baseurl'].'"><img src="./img/play.png" width="16" height="16" title="Visionner '.$stid['name'].'"/></a> '; }
