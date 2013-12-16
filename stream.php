@@ -1,14 +1,17 @@
 ﻿<?php 
-
-// --- Merci à Seriasme
+//										   //
+//WANT TO MAKE A DONATION FOR THIS SCRIPT ?//
+//      BTC DONATION AVAILABLE : 		   //
+//   1AsQK6bKFLexyKQ3naXMUnGyDeDXvN4563    //
 //
-
+//Author : @Seriesme
+//
 error_reporting(E_ALL);
 session_start();
 include("includes/config.php");
 include("includes/functions.php");
 
-// --- Si déjà identifié 
+//Si déjà identifié 
 if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
 $codec=isset($_GET['codec']) ? htmlspecialchars($_GET['codec']) : null;
 $file=isset($_GET['file']) ? htmlspecialchars($_GET['file']) : null;
@@ -37,7 +40,7 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <video width="690" height="380" autoplay controls>
-				<source src="http://5.135.159.233/cakebox/downloads/'.$file.'" type="video/mp4">
+				<source src="'.$folderstream.$file.'" type="video/mp4">
 				Your browser does not support the video tag.
 				</video>
 				</center>
@@ -61,7 +64,7 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <video width="690" height="380" autoplay controls>
-				<source src="http://5.135.159.233/cakebox/downloads/'.$file.'" type="video/mp4">
+				<source src="'.$folderstream.$file.'" type="video/mp4">
 				Your browser does not support the video tag.
 				</video>
 				</center>
@@ -79,8 +82,8 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <object classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616" width="690px" height="380px" codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab">
-	            <param name="src" value="http://5.135.159.233/cakebox/downloads/'.$file.'" />
-	            <embed type="video/divx" src="http://5.135.159.233/cakebox/downloads/'.$sfile.'"
+	            <param name="src" value="'.$folderstream.$file.'" />
+	            <embed type="video/divx" src="'.$folderstream.$file.'"
 	                   width="640" height="360"
 	                   pluginspage="http://go.divx.com/plugin/download/">
 	            </embed>
@@ -105,8 +108,8 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <object classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616" width="690px" height="380px" codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab">
-	            <param name="src" value="http://5.135.159.233/cakebox/downloads/'.$file.'" />
-	            <embed type="video/divx" src="http://5.135.159.233/cakebox/downloads/'.$sfile.'"
+	            <param name="src" value="'.$folderstream.$file.'" />
+	            <embed type="video/divx" src="'.$folderstream.$file.'"
 	                   width="640" height="360"
 	                   pluginspage="http://go.divx.com/plugin/download/">
 	            </embed>
@@ -149,7 +152,7 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <video width="690" height="380" autoplay controls>
-				<source src="http://5.135.159.233/cakebox/downloads/'.$sfile.'" type="video/mp4">
+				<source src="'.$folderstream.$file.'" type="video/mp4">
 				Your browser does not support the video tag.
 				</video>
 				</center>
@@ -172,7 +175,7 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <video width="690" height="380" autoplay controls>
-				<source src="http://5.135.159.233/cakebox/downloads/'.$sfile.'" type="video/mp4">
+				<source src="'.$folderstream.$file.'" type="video/mp4">
 				Your browser does not support the video tag.
 				</video>
 				</center>
@@ -189,8 +192,8 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <object classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616" width="690px" height="380px" codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab">
-	            <param name="src" value="http://5.135.159.233/cakebox/downloads/'.$sfile.'" />
-	            <embed type="video/divx" src="http://5.135.159.233/cakebox/downloads/'.$sfile.'"
+	            <param name="src" value="'.$folderstream.$file.'" />
+	            <embed type="video/divx"  src="'.$folderstream.$file.'"
 	                   width="640" height="360"
 	                   pluginspage="http://go.divx.com/plugin/download/">
 	            </embed>
@@ -215,8 +218,8 @@ echo' <div class="panel panel-warning">
               <div class="panel-body">
 			  <center>
 			  <object classid="clsid:67DABFBF-D0AB-41fa-9C46-CC0F21721616" width="690px" height="380px" codebase="http://go.divx.com/plugin/DivXBrowserPlugin.cab">
-	            <param name="src" value="http://5.135.159.233/cakebox/downloads/'.$sfile.'" />
-	            <embed type="video/divx" src="http://5.135.159.233/cakebox/downloads/'.$sfile.'"
+	            <param name="src" value="'.$folderstream.$file.'" />
+	            <embed type="video/divx" src="'.$folderstream.$file.'"
 	                   width="640" height="360"
 	                   pluginspage="http://go.divx.com/plugin/download/">
 	            </embed>
