@@ -1,17 +1,14 @@
 ﻿<?php 
-//										   //
-//WANT TO MAKE A DONATION FOR THIS SCRIPT ?//
-//      BTC DONATION AVAILABLE : 		   //
-//   1AsQK6bKFLexyKQ3naXMUnGyDeDXvN4563    //
+
+// --- Merci à Seriasme
 //
-//Author : @Seriesme
-//
+
 error_reporting(E_ALL);
 session_start();
 include("includes/config.php");
 include("includes/functions.php");
 
-//Si déjà identifié 
+// --- Si déjà identifié 
 if (isset($_SESSION['id']) && isset($_SESSION['username'])) {
 $codec=isset($_GET['codec']) ? htmlspecialchars($_GET['codec']) : null;
 $file=isset($_GET['file']) ? htmlspecialchars($_GET['file']) : null;
