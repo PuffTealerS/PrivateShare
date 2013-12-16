@@ -1,6 +1,6 @@
 #PrivateShare
 
-@PuffTealerS - 15/12/13
+@PuffTealerS - 16/12/13
 
 
 
@@ -9,10 +9,9 @@ j'ai repris le projet existant pour continuer de le coder.
 Pour l'instant, les nouveautés sont :
 
 - Modification du CSS
-- Ajout : Récupération pour les 1080p (qui ne sont pas dans des dossiers) de l'image de l'affiche (via allociné)
-- Affichage des 5 affiches des films 1080p les plus récents sur l'index
+- Recupération via API AlloCiné Helper des affiches pour les 5 derniers fichiers 1080p&DVDRiP téléchargés
 - Mise en place d'un changelog dans la partie admin (Ajout de version/Modification de version)
-- Ajout des avatars, il y en a un par défaut
+- Ajout des avatars (Ajout via profil)
 
 Quelques screens : 
 - <a href="http://www.zupmage.eu/i/6lr4y9Hwiv.png" targer="_blanlk">Login</a>
