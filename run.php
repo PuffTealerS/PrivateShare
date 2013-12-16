@@ -8,22 +8,6 @@
 //
 //<meta http-equiv="refresh" content="10;index.php" />
 
-/*function folderSize ($dir)
-{
-    $size = 0;
-    $contents = glob(rtrim($dir, '/').'/*', GLOB_NOSORT);
-
-    foreach ($contents as $contents_value) {
-        if (is_file($contents_value)) {
-            $size += filesize($contents_value);
-        } else {
-            $size += realFolderSize($contents_value);
-        }
-    }
-
-    return $size;
-}*/
-
 function poids($rep)
 {
     $r = opendir($rep);
@@ -69,12 +53,13 @@ function unite($valeur)
 error_reporting(E_ALL);
 include("includes/config.php");
 include("includes/functions.php");
+include("header.php");
+include("menu.php");
 
-//On vide les tables
+// --- On vide les tables
 $delete=$bdd->prepare('TRUNCATE TABLE list');
 $delete->execute();
-echo "Suppresion des tables";
-echo '<br>';
+
 
 $count=0;		
 
@@ -83,11 +68,11 @@ for($count=0;$count<=$numberurl;$count++)
 if($dossier = opendir(''.$baseurl[$count].'')) {
 
 
-	
+
 	while(false !== ($fichier = readdir($dossier))) {
 
 			if($fichier != '.' && $fichier != '..' && $fichier != 'index.php' && $fichier != '.session' && $fichier != '.htaccess' && $fichier != '.htpasswd') {
-			
+				
 				$url=''.$baseurl[$count].''.$fichier.'';
 				$datetime= date ("Y-m-d H:i:s", filemtime($url));
 				$name= clean_name($fichier);
@@ -155,18 +140,21 @@ if($dossier = opendir(''.$baseurl[$count].'')) {
 				//Test FLAC
 				$FLAC=detectFLAC($fichier);
 				if($FLAC!=0) { $cat='002'; }
+
+				    //Test Mac OSX
+                    $MAC=detectMac($namefile);
+                    if($MAC!=0) { $cat= "cat-apple"; }
 				
-				//Sous dossier
+				// --- Sous dossier
 				if(is_dir($url)) {
 					$f=1;
 					$size='Dossier';
 					$poid = poids($url);
 					$sizef = unite($poid);
-					//echo $sizef;
 					$req = $bdd->prepare('INSERT INTO list(fichier, name, folder, size, sizefolder, cat, logtime, datetime, baseurl) VALUES(:fichier, :name, :folder, :size, :sizef, :cat, NOW(), :datetime, :baseurl)');
 					$req->execute(array('fichier' => $fichier, 'name' => $name, 'folder' => $f, 'size' => $size, 'sizef'=>$sizef, 'cat' => $cat, 'datetime' => $datetime, 'baseurl' => $count)); }
 				
-				//Si c'est un fichier	
+				// --- Si c'est un fichier	
 				if(is_file($url)) {	
 					$f=0;
 					$size= filesize($url);
@@ -174,9 +162,10 @@ if($dossier = opendir(''.$baseurl[$count].'')) {
 					$req = $bdd->prepare('INSERT INTO list(fichier, name, folder, size, cat, logtime, datetime, baseurl) VALUES(:fichier, :name, :folder, :size, :cat, NOW(), :datetime, :baseurl)');
 					$req->execute(array('fichier' => $fichier, 'name' => $name, 'folder' => $f, 'size' => $fsize, 'cat' => $cat, 'datetime' => $datetime, 'baseurl' => $count)); }
 						
-				//echo $url;
-				}
+				
+				
 				} 
+			}
 
 
 	closedir($dossier);
@@ -190,33 +179,31 @@ else { echo 'Le dossier n\' a pas pu être ouvert'; }
 $affichefilm=$bdd->prepare('SELECT * FROM `list` WHERE (`cat`=200 OR `cat`=024) AND `sizefolder`< 50 ORDER BY datetime DESC LIMIT 0, 5');
 $affichefilm->execute();
 
-echo 'Suppresion des miniatures du dossier images';
-echo '<br>';
 //$folder ='img/thumbnails/';
 //clearFolder($folder);
 $n=0;
 
-
+echo '<center><h3>Mise à jour de la BDD</h3>';
 while($film = $affichefilm->fetch()) {
 
 	$arrayFilm[$n] = nomfilm($film['name']);
-	echo $arrayFilm[$n];
 	$code = recuperercode($arrayFilm[$n]);
     $urlimage = recupererimage($code);
-    echo $urlimage;
    	$arrayFilm[$n] = str_replace(" ", "", $arrayFilm[$n]);
     $content = file_get_contents($urlimage);
 	file_put_contents('img/thumbnails/'.$n.'.jpg', $content);
 	$file_src='img/thumbnails/'.$n.'.jpg';
-    echo '<img src="'.$file_src.'"" alt="coucou" height="250" width="200">';
+    echo '<img src="'.$file_src.'"" alt="coucou" height="100" width="75">';
 	$n++;
 }
 
-//Insert last ID
+echo '
+<p>Redirection en cours ...</p>
+</center>';
+header('Refresh: 5; url=index.php'); 
+//--- Recuperer le dernier id
 $lastid = $bdd->lastInsertId();
 $sqllastid = $bdd->prepare('UPDATE config SET lastid = :lastid');
 $sqllastid->execute(array('lastid' => $lastid));
-
-
 
 ?>

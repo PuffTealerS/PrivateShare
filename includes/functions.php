@@ -154,7 +154,8 @@ function show_folder($path,$b)
     }
 }
 
-//Detection pour rpatch
+//--- Detection pour trier
+//
 function detectme($namefile)
 {
 	$cat = "cat-divers";
@@ -232,7 +233,8 @@ function detectme($namefile)
 }
 
 
-//Détection animé
+//--- Detection anime
+//
 function detectA($namefile)
 {
 	$a=0;
@@ -252,7 +254,9 @@ function detectA($namefile)
 	return $a;
 
 }
-// Detection Mac
+
+// --- Detection Mac (Non fonctionnelle)
+//
 function detectMac($namefile)
 {
     $a=0;
@@ -263,7 +267,8 @@ function detectMac($namefile)
 
     return $a;
 }
-//Détection Documentaire
+// --- Detection Documentaire
+//
 function detectD($namefile)
 {
 	$d=0;
@@ -293,7 +298,8 @@ function convertFileSize($bytes)
 	return $bytes ." octets";
 }
 
-//Reformuler le nom
+//--- Reformuler le nom
+//
 function clean_name($namefile)
 {
 	$namefile = str_replace('.avi', '', $namefile);
@@ -308,7 +314,8 @@ function clean_name($namefile)
 }
 
 
-//Détection hD
+//--- Detection 1080p | 720p
+//
 function detectHD($namefile)
 {
 	$HD=0;
@@ -317,7 +324,8 @@ function detectHD($namefile)
 	return $HD;
 }
 
-//Détection VOSTFR | VF
+//--- Detection VOSTFR | VF
+//
 function detectV($namefile)
 {
 	$v=0;
@@ -326,7 +334,8 @@ function detectV($namefile)
 	return $v;
 }
 
-//Détection Série
+//--- Detection serie
+//
 function detectS($namefile)
 {
 	$s=0;
@@ -338,7 +347,8 @@ function detectS($namefile)
 	return $s;
 }
 
-//Détection Film
+//--- Detection Film
+//
 function detectF($namefile)
 {
 	$f=0;
@@ -350,7 +360,8 @@ function detectF($namefile)
 	return $f;
 }
 
-//Détection Flac
+//--- Detection Flac
+//
 function detectFLAC($namefile)
 {
 	$f=0;
@@ -358,7 +369,8 @@ function detectFLAC($namefile)
 	return $f;
 }
 
-//Détection Ebooks
+//--- Detection Ebooks
+//
 function detectEbook($namefile)
 {
 	$f=0;
@@ -368,7 +380,8 @@ function detectEbook($namefile)
 	return $f;
 }
 
-//detection catégorie final
+//--- Detection categorie finale
+//
 function defineCat($code)
 {
     switch($code)
@@ -425,7 +438,8 @@ function defineCat($code)
     }
 }
 
-//detection section
+//--- Detecter une section
+//
 function defineSection($section)
 {
     switch($section)
@@ -451,18 +465,14 @@ function defineSection($section)
     }
 }
 
-/*
- * Nettoyer le nom du film afin de ne recuperer que le titre
- */
+// --- Nettoyer le nom
 
 function nomfilm ($string) {
     
-// ---- $string = "Hunger Games 2012 MULTi TRUEFRENCH 1080p BluRay DTS-HDMA AC3 x264-FrIeNdS";
 
     $string = strtolower($string);    
     $string = str_replace('.', ' ', $string);
-    //$string = str_replace('-', ' ', $string);
-$string = preg_replace('/truefrench/', '', $string);
+    $string = preg_replace('/truefrench/', '', $string);
     $string = str_replace('(', '', $string);
     $string = str_replace(')', '', $string);
     $string = str_replace("'",' ',$string);
@@ -483,7 +493,6 @@ $string = preg_replace('/truefrench/', '', $string);
     $string = preg_replace('/1080p/', '', $string);
     $string = preg_replace('/bluray/', '', $string);
     $string = preg_replace('/multi/', '', $string);
-    
     $string = preg_replace('/multigrps/', '', $string);
     $string = preg_replace('/extended cut/', '', $string);
     $string = preg_replace('/extended/', '', $string);
@@ -492,53 +501,50 @@ $string = preg_replace('/truefrench/', '', $string);
     $string = preg_replace('/ac3/', '', $string);
     $string = preg_replace('/proper/', '', $string);    
     $string = preg_replace('/([0-9]{4})/', '', $string);
-    //$string = rtrim($string);
-    //$string = substr($string,0,-4);
-    
+
     return $string;
 }
 
+// --- Recuperer le code correspondant au film
+//
     function recuperercode($nomfilm) {
 
     	$allohelper = new AlloHelper;
 
-    // Parameters
+    // Parametres
     $page = 1;
     $count = 1;
     
     try
     {
-        // Request
+        //--- Requete
         $data = $allohelper->search($nomfilm, $page, $count);
         
-        // No result ?
+        //--- Pas de resultat
         if (!$data or count($data->movie) < 1)
             throw new ErrorException('No result for "' . $search . '"');
-        
-       
-        // For each movie result.
+
+        //--- Pour chaque films
         foreach ($data->movie as $i => $movie)
         {
-
-            // i | code | title
+            //--- i | code | title
             
             $code = $movie->code;
-            
         }
     }
     
-    // Error
+    // --- Erreur
     catch (ErrorException $e)
     {
         echo "Error " . $e->getCode() . ": " . $e->getMessage() . PHP_EOL;
     }
 
-    
     return $code;
-
 }
 	
 
+// --- Recuperer une affiche correspondant au code
+//
     function recupererimage($code) 
     {
 
@@ -546,20 +552,17 @@ $string = preg_replace('/truefrench/', '', $string);
     
     try
     {
-        // Request
+        // --- Requete
         $movie = $allohelper->movie($code);
         
         $url=$movie->poster;
-
     }
     
-    // Error
+    //--- Erreur
     catch (ErrorException $e)
     {
         echo "Error " . $e->getCode() . ": " . $e->getMessage() . PHP_EOL;
     }
-    
-
     return $url;
 }
 ?>
