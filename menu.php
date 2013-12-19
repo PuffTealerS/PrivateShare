@@ -99,8 +99,9 @@
 				  if($countreq==1) { if ($cat == 7) { echo'<li class="active">'; } else { echo '<li>'; } echo'<a href="request.php">Requ&ecirc;te <span class="badge">'.$countreq.'</span></a></li>'; }
 				  elseif($countreq!=1&&$countreq!=0) { if ($cat == 7) { echo'<li class="active">'; } else { echo '<li>'; } echo'<a href="request.php">Requ&ecirc;tes <span class="badge">'.$countreq.'</span></a></li>'; }
 				  else { if ($cat == 7) { echo'<li class="active">'; } else { echo '<li>'; } echo'<a href="request.php">Requ&ecirc;te <span class="badge"></span></a></li>'; } 
+				  echo '<li><a href="contact.php">Contact</a></li>';
 				  } ?>
-				  	<li><a href="contact.php">Contact</a></li>
+				  	
 					  <li><a href="logout.php">Logout</a></li>
 					</ul>
         </div>
