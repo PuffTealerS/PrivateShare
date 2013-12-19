@@ -35,9 +35,10 @@ $sitename = 'Private Share';
 //
 $siteurl = 'http://localhost/PrivateShare/'; 
 
-// --- Adresse email d'envoi
+// --- Adresse email d'envoi pour le formulaire de contact (Gmail obligatoire) mail + mdp
 //
-$siteemail = ''; 
+$admin_mail = ''; 
+$admin_mailmdp = '';
 
 // --- Directory URL ex: http://mysite/test => vous installez comme ceci $urldirectory = 'test/';
 //

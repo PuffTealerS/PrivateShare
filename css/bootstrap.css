@@ -201,7 +201,24 @@ div#newversion{
   border-radius:10;
 }
 
+div#contact {
+  opacity:0.8;
+  color:white;
+  background-color: grey;
+  width: 400px;
+  height: 420px;
+  border-radius: 10px;
 
+}
+
+table#contact{
+  color:white;
+  background-color: grey;
+}
+
+b#codas {
+  color:red;
+}
 sub,
 sup {
   position: relative;
