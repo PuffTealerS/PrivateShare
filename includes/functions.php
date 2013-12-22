@@ -466,7 +466,12 @@ function nomfilm ($string) {
     $string = str_replace("'",' ',$string);
     $string = preg_replace('/dts-hdma/','', $string);
     $string = strstr($string, '-', TRUE);
+    $string = preg_replace('/1080i/', '', $string);
     $string = preg_replace('/limited/', '', $string);
+    $string = preg_replace('/ac3/', '', $string);
+    $string = preg_replace('/tv/', '', $string);
+    $string = preg_replace('/mpeg-2/', '', $string);
+    $string = preg_replace('/mpeg/', '', $string);
     $string = preg_replace('/x264/', '', $string);
     $string = preg_replace('/brrip/', '', $string);
     $string = preg_replace('/french/', '', $string);
