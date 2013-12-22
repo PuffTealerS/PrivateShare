@@ -42,3 +42,5 @@ ________________________________________________________________________________
 
 
 D'autres nouveautés sont à venir ;).
+
+<center><a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/fr/"><img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/fr/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/fr/">Licence Creative Commons Attribution - Pas d’Utilisation Commerciale 3.0 France</a>.</center>
