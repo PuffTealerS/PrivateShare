@@ -187,8 +187,17 @@ echo '<center><h3>Mise à jour de la BDD</h3>';
 while($film = $affichefilm->fetch()) {
 
 	$arrayFilm[$n] = nomfilm($film['name']);
-	$code = recuperercode($arrayFilm[$n]);
+	$arrayFilm[$n] = str_replace(' ', '+', $arrayFilm[$n]);
+    $urlimage = recupererimage2($arrayFilm[$n]);
+ 
+ 	if ($urlimage == "http://image.tmdb.org/t/p/w500'") {
+
+    $arrayFilm[$n] = str_replace('+', ' ', $arrayFilm[$n]);
+    $code = recuperercode($arrayFilm[$n]);
     $urlimage = recupererimage($code);
+	
+	}
+
    	$arrayFilm[$n] = str_replace(" ", "", $arrayFilm[$n]);
     $content = file_get_contents($urlimage);
 	file_put_contents('img/thumbnails/'.$n.'.jpg', $content);

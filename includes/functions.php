@@ -154,8 +154,7 @@ function show_folder($path,$b)
     }
 }
 
-//--- Detection pour trier
-//
+//Detection pour rpatch
 function detectme($namefile)
 {
 	$cat = "cat-divers";
@@ -233,8 +232,7 @@ function detectme($namefile)
 }
 
 
-//--- Detection anime
-//
+//Détection animé
 function detectA($namefile)
 {
 	$a=0;
@@ -254,9 +252,7 @@ function detectA($namefile)
 	return $a;
 
 }
-
-// --- Detection Mac (Non fonctionnelle)
-//
+// Detection Mac
 function detectMac($namefile)
 {
     $a=0;
@@ -267,8 +263,7 @@ function detectMac($namefile)
 
     return $a;
 }
-// --- Detection Documentaire
-//
+//Détection Documentaire
 function detectD($namefile)
 {
 	$d=0;
@@ -298,8 +293,7 @@ function convertFileSize($bytes)
 	return $bytes ." octets";
 }
 
-//--- Reformuler le nom
-//
+//Reformuler le nom
 function clean_name($namefile)
 {
 	$namefile = str_replace('.avi', '', $namefile);
@@ -314,8 +308,7 @@ function clean_name($namefile)
 }
 
 
-//--- Detection 1080p | 720p
-//
+//Détection hD
 function detectHD($namefile)
 {
 	$HD=0;
@@ -324,8 +317,7 @@ function detectHD($namefile)
 	return $HD;
 }
 
-//--- Detection VOSTFR | VF
-//
+//Détection VOSTFR | VF
 function detectV($namefile)
 {
 	$v=0;
@@ -334,8 +326,7 @@ function detectV($namefile)
 	return $v;
 }
 
-//--- Detection serie
-//
+//Détection Série
 function detectS($namefile)
 {
 	$s=0;
@@ -347,8 +338,7 @@ function detectS($namefile)
 	return $s;
 }
 
-//--- Detection Film
-//
+//Détection Film
 function detectF($namefile)
 {
 	$f=0;
@@ -360,8 +350,7 @@ function detectF($namefile)
 	return $f;
 }
 
-//--- Detection Flac
-//
+//Détection Flac
 function detectFLAC($namefile)
 {
 	$f=0;
@@ -369,8 +358,7 @@ function detectFLAC($namefile)
 	return $f;
 }
 
-//--- Detection Ebooks
-//
+//Détection Ebooks
 function detectEbook($namefile)
 {
 	$f=0;
@@ -380,8 +368,7 @@ function detectEbook($namefile)
 	return $f;
 }
 
-//--- Detection categorie finale
-//
+//detection catégorie final
 function defineCat($code)
 {
     switch($code)
@@ -438,8 +425,7 @@ function defineCat($code)
     }
 }
 
-//--- Detecter une section
-//
+//detection section
 function defineSection($section)
 {
     switch($section)
@@ -465,7 +451,9 @@ function defineSection($section)
     }
 }
 
-// --- Nettoyer le nom
+/*
+ * Nettoyer le nom du film afin de ne recuperer que le titre
+ */
 
 function nomfilm ($string) {
     
@@ -486,13 +474,15 @@ function nomfilm ($string) {
     $string = preg_replace('/hd ma/', '', $string);
     $string = preg_replace('/hd/', '', $string);
     $string = preg_replace('/subforced/', '', $string);
+    $string = preg_replace('/fastsub/', '', $string);
+    $string = preg_replace('/proper/', '', $string);
     $string = preg_replace('/xvid/', '', $string);
     $string = preg_replace('/dts hdma ac3/', '', $string);
     $string = preg_replace('/dts hdma/', '', $string);
     $string = preg_replace('/dts/', '', $string);
     $string = preg_replace('/1080p/', '', $string);
     $string = preg_replace('/bluray/', '', $string);
-    $string = preg_replace('/multi/', '', $string);
+    $string = preg_replace('/multi/', '', $string);  
     $string = preg_replace('/multigrps/', '', $string);
     $string = preg_replace('/extended cut/', '', $string);
     $string = preg_replace('/extended/', '', $string);
@@ -501,50 +491,54 @@ function nomfilm ($string) {
     $string = preg_replace('/ac3/', '', $string);
     $string = preg_replace('/proper/', '', $string);    
     $string = preg_replace('/([0-9]{4})/', '', $string);
+    $string = rtrim($string);
 
+    
     return $string;
 }
 
-// --- Recuperer le code correspondant au film
-//
     function recuperercode($nomfilm) {
 
     	$allohelper = new AlloHelper;
 
-    // Parametres
+    // Parameters
     $page = 1;
     $count = 1;
     
     try
     {
-        //--- Requete
+        // Request
         $data = $allohelper->search($nomfilm, $page, $count);
         
-        //--- Pas de resultat
+        // No result ?
         if (!$data or count($data->movie) < 1)
             throw new ErrorException('No result for "' . $search . '"');
-
-        //--- Pour chaque films
+        
+       
+        // For each movie result.
         foreach ($data->movie as $i => $movie)
         {
-            //--- i | code | title
+
+            // i | code | title
             
             $code = $movie->code;
+            
+            
         }
     }
     
-    // --- Erreur
+    // Error
     catch (ErrorException $e)
     {
         echo "Error " . $e->getCode() . ": " . $e->getMessage() . PHP_EOL;
     }
 
+    
     return $code;
+
 }
 	
 
-// --- Recuperer une affiche correspondant au code
-//
     function recupererimage($code) 
     {
 
@@ -552,17 +546,37 @@ function nomfilm ($string) {
     
     try
     {
-        // --- Requete
+        // Request
         $movie = $allohelper->movie($code);
         
         $url=$movie->poster;
+
+
     }
     
-    //--- Erreur
+    // Error
     catch (ErrorException $e)
     {
         echo "Error " . $e->getCode() . ": " . $e->getMessage() . PHP_EOL;
     }
+    
+
     return $url;
 }
+
+function recupererimage2($nom) 
+{
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, "http://api.themoviedb.org/3/search/movie?query='".$nom."'&api_key=6f2170b54b929e099b2f0ffd8c3d0c79&language=fr");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+$response = curl_exec($ch);
+curl_close($ch);
+$result = json_decode($response, true);
+$string = "http://image.tmdb.org/t/p/w500". $result['results'][0]['poster_path'] . "'";
+return $string;
+}
+
+
 ?>
