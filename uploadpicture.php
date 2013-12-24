@@ -26,7 +26,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
     }
 
 
-    if (file_exists("img/avatar/" . $_FILES["file"]["name"]))
+    if (file_exists($_FILES["file"]["name"]))
       {
       echo $_FILES["file"]["name"] . " already exists. ";
       }
