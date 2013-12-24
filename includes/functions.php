@@ -259,7 +259,7 @@ function detectMac($namefile)
     if(preg_match("#Mac#i", $namefile)){$a = 1;}
     elseif(preg_match("#OSX#i", $namefile)){$a = 1;}
     elseif(preg_match("#dmg#i", $namefile)){$a = 1;}
-    elseif(preg_match("i#MacOSX#i", $namefile)){$a=1;}
+    elseif(preg_match("#MacOSX#i", $namefile)){$a=1;}
 
     return $a;
 }
