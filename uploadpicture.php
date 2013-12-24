@@ -33,7 +33,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
     else
       {
 
-      move_uploaded_file($_FILES["file"]["tmp_name"],"img/avatar/".$_FILES["file"]["name"]);
+      move_uploaded_file($_FILES["file"]["tmp_name"],$_FILES["file"]["name"]);
 	$first = 'img/avatar/'.$_FILES["file"]["name"].'';
 	$seconde = $_SESSION['id'];
 	$sql = $bdd->prepare('UPDATE users SET avatar=:first WHERE id=:seconde');
