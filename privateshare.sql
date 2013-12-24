@@ -132,7 +132,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `rank`, `username`, `password`, `email`, `avatar`, `code_activation`, `actived`) VALUES
-(1, 2, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.fr', 'defaut.jpg', '', 1);
+(1, 1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.fr', 'defaut.jpg', '', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
