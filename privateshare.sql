@@ -121,7 +121,7 @@ CREATE TABLE `users` (
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `avatar` varchar(255) NOT NULL DEFAULT 'img/avatar/defaut.jpg',
+  `avatar` varchar(255) NOT NULL DEFAULT 'defaut.jpg',
   `code_activation` varchar(255) NOT NULL,
   `actived` int(1) NOT NULL,
   PRIMARY KEY (`id`)

@@ -49,7 +49,7 @@
 
 						$avatar = $sqlavatar -> fetch();
 						$chemin = $avatar['avatar'];
-						echo '<li id="pseudo"><img src="'.$chemin.'" height="45" width="50"></br>';
+						echo '<li id="pseudo"><img src="img/avatar/'.$chemin.'" height="45" width="50"></br>';
 						echo $_SESSION['username'].'</a></li>';
 						
 						
