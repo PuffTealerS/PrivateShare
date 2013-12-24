@@ -142,8 +142,8 @@ if($dossier = opendir(''.$baseurl[$count].'')) {
 				if($FLAC!=0) { $cat='002'; }
 
 				    //Test Mac OSX
-                    $MAC=detectMac($namefile);
-                    if($MAC!=0) { $cat= "cat-apple"; }
+                    $MAC=detectMac($fichier);
+                    if($MAC!=0) { $cat= '026'; }
 				
 				// --- Sous dossier
 				if(is_dir($url)) {
