@@ -201,24 +201,77 @@ div#newversion{
   border-radius:10;
 }
 
-div#contact {
+div#profilborder{
+  border-radius:3;
   opacity:0.8;
+  width:40%;
+  background-color:#424242;
   color:white;
-  background-color: grey;
-  width: 400px;
-  height: 420px;
-  border-radius: 10px;
+
 
 }
+/* modifprofil */
 
-table#contact{
+div#modifprofil {
+
+  text-align : center;
+  border-radius:3;
+  opacity:0.8;
+  width:40%;
+  background-color:#424242;
   color:white;
-  background-color: grey;
+  margin-top: 20%;
+
 }
 
-b#codas {
-  color:red;
+p#redirection {
+
+  color:#FA5858;
 }
+
+/* Compte.php */
+h2 {
+  color: black;
+}
+p#label {
+
+  font-size:10px;
+}
+p#titrecompte {
+
+  font-size:18px;
+  color: #FA5858;
+}
+
+div#divprincipal{
+display:none;
+}
+
+div#modif_avatar {
+
+  border-width: 1px; 
+  border-style: dotted;
+   border-color: grey;
+}
+
+div#modif_password {
+
+  border-width: 1px; 
+  border-style: dotted;
+   border-color: grey;
+}
+
+div#modif_mail {
+
+  border-width: 1px; 
+  border-style: dotted;
+   border-color: grey;
+}
+/*table#profil tr {
+
+  border:1px solid red;
+}*/
+
 sub,
 sup {
   position: relative;
